@@ -1,9 +1,9 @@
 package sample;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Label;
 
 public class Model {
 
@@ -20,12 +20,12 @@ public class Model {
                 BufferedReader input = new BufferedReader(new FileReader(savedText));
 
                 inputNewText = input.readLine();
-                viewListTexts = new ArrayList();
                 String newViewResultsText = input.readLine();
                 while (newViewResultsText != null) {
                     viewListTexts.add(newViewResultsText);
                     newViewResultsText = input.readLine();
                 }
+                input.close();
             }
         } catch (Exception e) {
         }
@@ -36,6 +36,7 @@ public class Model {
             File savedText = new File(getClass().getResource("SavedText.txt").toURI());
             BufferedWriter writer = new BufferedWriter(new FileWriter(savedText));
             if (writer != null) {
+                writer.newLine();
                 if (inputNewText != null) {
                     writer.write(inputNewText);
                 } else {
@@ -68,7 +69,6 @@ public class Model {
 
     void setAllData(String updatedInputNewText, List<Label> updatedViewListTexts) {
         inputNewText = updatedInputNewText;
-
         int length = updatedViewListTexts.size();
         viewListTexts.clear();
         for (int i = 0; i < length; i++) {
