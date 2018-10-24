@@ -4,12 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.web.HTMLEditor;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 
@@ -22,8 +17,11 @@ public class Main extends Application {
         control = loader.getController();
 
         primaryStage.setTitle("To Do List");
-        primaryStage.setScene(new Scene(root, 400, 800));
+        primaryStage.setScene(new Scene(root, 400, 600));
+
         primaryStage.show();
+
+        control.resetViewList();
     }
 
     @Override

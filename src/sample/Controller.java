@@ -1,14 +1,14 @@
 package sample;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import java.util.ArrayList;
 
 public class Controller {
 
     public TextField inputNew;
-    public ListView<Label> viewList;
+    public ListView<CheckBox> viewList;
 
     private Model model;
 
@@ -17,7 +17,7 @@ public class Controller {
         inputNew.setText(model.getInputNewText());
         ArrayList viewListTexts = model.getViewListTexts();
         for (int i = 0; i < viewListTexts.size(); i++) {
-            viewList.getItems().add(new Label((String)viewListTexts.get(i)));
+            viewList.getItems().add(new CheckBox((String)viewListTexts.get(i)));
         }
     }
 
@@ -27,8 +27,16 @@ public class Controller {
     }
 
     public void inputNewReady() {
-        System.out.println("inputNewReady: " + inputNew.getText());
-        viewList.getItems().add(new Label(inputNew.getText()));
+        CheckBox newCheckBox = new CheckBox(inputNew.getText());
+        newCheckBox.setOnAction(e -> {
+            viewList.getItems().remove(newCheckBox);
+        });
+        viewList.getItems().add(newCheckBox);
         inputNew.setText("");
+    }
+
+
+    public void resetViewList() {
+        viewList.getItems().clear();
     }
 }

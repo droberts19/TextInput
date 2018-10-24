@@ -3,7 +3,7 @@ package sample;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 
 public class Model {
 
@@ -15,25 +15,27 @@ public class Model {
         viewListTexts = new ArrayList();
 
         try {
-            File savedText = new File(getClass().getResource("SavedText.txt").toURI());
+            File savedText = new File(getClass().getResource("NewThing.txt").toURI());
             if (savedText.exists()) {
                 BufferedReader input = new BufferedReader(new FileReader(savedText));
 
                 inputNewText = input.readLine();
-                String newViewResultsText = input.readLine();
-                while (newViewResultsText != null) {
-                    viewListTexts.add(newViewResultsText);
-                    newViewResultsText = input.readLine();
+                String newViewListText = input.readLine();
+                while (newViewListText != null) {
+                    viewListTexts.add(newViewListText);
+                    newViewListText = input.readLine();
                 }
+
                 input.close();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     void save() {
         try {
-            File savedText = new File(getClass().getResource("SavedText.txt").toURI());
+            File savedText = new File(getClass().getResource("NewThing.txt").toURI());
             BufferedWriter writer = new BufferedWriter(new FileWriter(savedText));
             if (writer != null) {
                 writer.newLine();
@@ -67,7 +69,7 @@ public class Model {
         return viewListTexts;
     }
 
-    void setAllData(String updatedInputNewText, List<Label> updatedViewListTexts) {
+    void setAllData(String updatedInputNewText, List<CheckBox> updatedViewListTexts) {
         inputNewText = updatedInputNewText;
         int length = updatedViewListTexts.size();
         viewListTexts.clear();

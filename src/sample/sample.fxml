@@ -20,14 +20,11 @@
    <children>
       <Pane prefHeight="571.0" prefWidth="409.0">
          <children>
-            <ListView layoutX="105.0" layoutY="149.0" prefHeight="300.0" prefWidth="200.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </ListView>
-            <TextField layoutX="105.0" layoutY="103.0" prefHeight="27.0" prefWidth="200.0" promptText="Type something here..." />
+            <TextField fx:id="inputNew" layoutX="105.0" layoutY="103.0" onAction="#inputNewReady" prefHeight="27.0" prefWidth="200.0" promptText="Add something new..." />
             <Label layoutX="168.0" layoutY="34.0" text="TO DO LIST" />
             <Label layoutX="146.0" layoutY="72.0" text="New Things To Do:" />
+            <ListView fx:id="viewList" layoutX="104.0" layoutY="147.0" prefHeight="290.0" prefWidth="200.0" />
+            <Button layoutX="162.0" layoutY="458.0" mnemonicParsing="false" onAction="#resetViewList" text="Reset Text" />
          </children>
       </Pane>
    </children>
