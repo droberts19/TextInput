@@ -8,11 +8,13 @@ import javafx.scene.control.CheckBox;
 public class Model {
 
     private String inputNewText;
-    private ArrayList<String> viewListTexts;
+    private String inputDueDateText;
+    private ArrayList<String> viewListTexts1;
 
     Model() {
         inputNewText = "";
-        viewListTexts = new ArrayList();
+        inputDueDateText = "";
+        viewListTexts1 = new ArrayList();
 
         try {
             File savedText = new File(getClass().getResource("NewThing.txt").toURI());
@@ -20,10 +22,16 @@ public class Model {
                 BufferedReader input = new BufferedReader(new FileReader(savedText));
 
                 inputNewText = input.readLine();
-                String newViewListText = input.readLine();
-                while (newViewListText != null) {
-                    viewListTexts.add(newViewListText);
-                    newViewListText = input.readLine();
+                System.out.println("Model Read: " + inputNewText);
+
+                inputDueDateText = input.readLine();
+                System.out.println("Model Read: " + inputDueDateText);
+
+                String newViewListTexts1 = input.readLine();
+                while (newViewListTexts1 != null) {
+                    viewListTexts1.add(newViewListTexts1);
+                    System.out.println("Model Read: " + viewListTexts1);
+                    newViewListTexts1 = input.readLine();
                 }
 
                 input.close();
@@ -38,17 +46,22 @@ public class Model {
             File savedText = new File(getClass().getResource("NewThing.txt").toURI());
             BufferedWriter writer = new BufferedWriter(new FileWriter(savedText));
             if (writer != null) {
-                writer.newLine();
                 if (inputNewText != null) {
                     writer.write(inputNewText);
                 } else {
                     writer.write("");
                 }
                 writer.newLine();
-                int length = viewListTexts.size();
-                if (length > 0) {
-                    for (int i = 0; i < length; i++) {
-                        writer.write(viewListTexts.get(i));
+                if (inputDueDateText != null) {
+                    writer.write(inputDueDateText);
+                } else {
+                    writer.write("");
+                }
+                writer.newLine();
+                int length1 = viewListTexts1.size();
+                if (length1 > 0) {
+                    for (int i = 0; i < length1; i++) {
+                        writer.write(viewListTexts1.get(i));
                         writer.newLine();
                     }
                 } else {
@@ -65,16 +78,23 @@ public class Model {
         return inputNewText;
     }
 
-    ArrayList<String> getViewListTexts() {
-        return viewListTexts;
+    String getInputDueDateText() {
+        return inputDueDateText;
     }
 
-    void setAllData(String updatedInputNewText, List<CheckBox> updatedViewListTexts) {
+    ArrayList<String> getViewListTexts1() {
+        return viewListTexts1;
+    }
+
+    void setAllData(String updatedInputNewText, String updatedInputDueDateText, List<CheckBox> updatedViewListTexts1) {
+
         inputNewText = updatedInputNewText;
-        int length = updatedViewListTexts.size();
-        viewListTexts.clear();
-        for (int i = 0; i < length; i++) {
-            viewListTexts.add(updatedViewListTexts.get(i).getText());
+        inputDueDateText = updatedInputDueDateText;
+
+        int length1 = updatedViewListTexts1.size();
+        viewListTexts1.clear();
+        for (int i = 0; i < length1; i++) {
+            viewListTexts1.add(updatedViewListTexts1.get(i).getText());
         }
     }
 }

@@ -20,15 +20,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 400, 600));
 
         primaryStage.show();
-
-        control.resetViewList();
     }
 
     @Override
     public void stop() {
         control.save();
     }
-
 
     public static void main(String[] args) {
         launch(args);

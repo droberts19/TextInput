@@ -8,35 +8,49 @@ import java.util.ArrayList;
 public class Controller {
 
     public TextField inputNew;
-    public ListView<CheckBox> viewList;
+    public TextField inputDueDate;
+    public ListView<CheckBox> viewList1;
+    public CheckBox newCheckBox;
 
     private Model model;
 
     public void initialize() {
         model = new Model();
         inputNew.setText(model.getInputNewText());
-        ArrayList viewListTexts = model.getViewListTexts();
-        for (int i = 0; i < viewListTexts.size(); i++) {
-            viewList.getItems().add(new CheckBox((String)viewListTexts.get(i)));
+        inputDueDate.setText(model.getInputDueDateText());
+
+        ArrayList viewListTexts1 = model.getViewListTexts1();
+        for (int i = 0; i < viewListTexts1.size(); i++) {
+            viewList1.getItems().add(new CheckBox((String)viewListTexts1.get(i)));
         }
     }
 
     void save() {
-        model.setAllData(inputNew.getText(), viewList.getItems());
+        model.setAllData(inputNew.getText(), inputDueDate.getText(), viewList1.getItems());
         model.save();
     }
 
     public void inputNewReady() {
-        CheckBox newCheckBox = new CheckBox(inputNew.getText());
-        newCheckBox.setOnAction(e -> {
-            viewList.getItems().remove(newCheckBox);
+
+
+    }
+
+    public void inputDueDateReady() {
+        CheckBox newCheckBox1 = new CheckBox(inputNew.getText() + "    Due By: " + inputDueDate.getText());
+        //newCheckBox.setText(inputNew.getText() + "    Due By: " + inputDueDate.getText());
+        viewList1.getItems().add(newCheckBox1);
+        newCheckBox1.setOnAction(e-> {
+            viewList1.getItems().remove(newCheckBox1);
         });
-        viewList.getItems().add(newCheckBox);
+
         inputNew.setText("");
+        inputDueDate.setText("");
     }
 
 
     public void resetViewList() {
-        viewList.getItems().clear();
+        viewList1.getItems().clear();
+        inputNew.setText("");
+        inputDueDate.setText("");
     }
 }
