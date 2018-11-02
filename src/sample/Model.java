@@ -87,11 +87,6 @@ public class Model {
         return viewListTexts1;
     }
 
-    String getChooseDateText() {
-        return chooseDateText;
-    }
-
-
     void setAllData(String updatedInputNewText, String updatedInputDueDateText, List<CheckBox> updatedViewListTexts1,
                     String updatedChooseDateText) {
 
