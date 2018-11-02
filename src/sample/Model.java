@@ -10,6 +10,7 @@ public class Model {
     private String inputNewText;
     private String inputDueDateText;
     private ArrayList<String> viewListTexts1;
+    private String chooseDateText;
 
     Model() {
         inputNewText = "";
@@ -34,6 +35,9 @@ public class Model {
                     newViewListTexts1 = input.readLine();
                 }
 
+                chooseDateText = input.readLine();
+                System.out.println("Model Read: " + chooseDateText);
+
                 input.close();
             }
         } catch (Exception e) {
@@ -48,14 +52,10 @@ public class Model {
             if (writer != null) {
                 if (inputNewText != null) {
                     writer.write(inputNewText);
-                } else {
-                    writer.write("");
                 }
                 writer.newLine();
                 if (inputDueDateText != null) {
                     writer.write(inputDueDateText);
-                } else {
-                    writer.write("");
                 }
                 writer.newLine();
                 int length1 = viewListTexts1.size();
@@ -64,9 +64,10 @@ public class Model {
                         writer.write(viewListTexts1.get(i));
                         writer.newLine();
                     }
-                } else {
-                    writer.write("");
-                    writer.newLine();
+                }
+                writer.newLine();
+                if (chooseDateText != null) {
+                    writer.write(chooseDateText);
                 }
             }
             writer.close();
@@ -86,7 +87,13 @@ public class Model {
         return viewListTexts1;
     }
 
-    void setAllData(String updatedInputNewText, String updatedInputDueDateText, List<CheckBox> updatedViewListTexts1) {
+    String getChooseDateText() {
+        return chooseDateText;
+    }
+
+
+    void setAllData(String updatedInputNewText, String updatedInputDueDateText, List<CheckBox> updatedViewListTexts1,
+                    String updatedChooseDateText) {
 
         inputNewText = updatedInputNewText;
         inputDueDateText = updatedInputDueDateText;
@@ -96,5 +103,7 @@ public class Model {
         for (int i = 0; i < length1; i++) {
             viewListTexts1.add(updatedViewListTexts1.get(i).getText());
         }
+
+        chooseDateText = updatedChooseDateText;
     }
 }

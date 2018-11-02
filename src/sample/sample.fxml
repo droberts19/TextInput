@@ -21,21 +21,18 @@
       <Pane prefHeight="571.0" prefWidth="409.0">
          <children>
             <Label layoutX="168.0" layoutY="34.0" text="TO DO LIST" />
-            <Label layoutX="146.0" layoutY="68.0" text="New Things To Do:" />
-            <ListView fx:id="viewList1" layoutX="123.0" layoutY="169.0" prefHeight="288.0" prefWidth="210.0" />
-            <Button layoutX="162.0" layoutY="473.0" mnemonicParsing="false" onAction="#resetViewList" text="All Done!" />
+            <Label layoutX="146.0" layoutY="65.0" text="New Things To Do:" />
+            <Button layoutX="162.0" layoutY="518.0" mnemonicParsing="false" onAction="#resetViewList" text="All Done!" />
             <TextField fx:id="inputNew" layoutX="116.0" layoutY="100.0" onAction="#inputNewReady" promptText="Add a new chore..." />
-            <TextField fx:id="inputDueDate" layoutX="116.0" layoutY="127.0" onAction="#inputDueDateReady" promptText="Add a due date..." />
-            <CheckBox layoutX="77.0" layoutY="176.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="202.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="228.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="291.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="363.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="345.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="327.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="309.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="439.0" mnemonicParsing="false" />
-            <CheckBox layoutX="77.0" layoutY="381.0" mnemonicParsing="false" />
+            <TextField fx:id="inputDueDate" layoutX="115.0" layoutY="154.0" onAction="#inputDueDateReady" promptText="Add a due date..." />
+            <ListView fx:id="viewList1" layoutX="65.0" layoutY="206.0" prefHeight="294.0" prefWidth="268.0" />
+            <DatePicker fx:id="chooseDate" layoutX="115.0" layoutY="154.0" onAction="#chooseDateReady" prefHeight="27.0" prefWidth="167.0" />
+            <MenuButton fx:id="chooseHowDue" layoutX="133.0" layoutY="127.0" mnemonicParsing="false" text="When is it Due?">
+              <items>
+                <MenuItem fx:id="byDate" mnemonicParsing="false" onAction="#byDateChosen" text="Set by Date" />
+                <MenuItem fx:id="byText" mnemonicParsing="false" onAction="#byTextChosen" text="Set by Text" />
+              </items>
+            </MenuButton>
          </children>
       </Pane>
    </children>
